@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiscalização — ATA 001/2023</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#080c14;--surface:#0d1420;--card:#111c2e;--border:#1e304d;
+  --accent:#00d4ff;--accent2:#00ff9d;--warn:#ffb800;--danger:#ff4757;
+  --text:#e2eaf5;--muted:#607090;--success:#00ff9d;
+  --mono:'JetBrains Mono',monospace;--sans:'Syne',sans-serif;
+  --imesb:#a78bfa;--barroquinha:#f59e0b;--iguatemi:#34d399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(0,212,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,.025) 1px,transparent 1px);
+  background-size:48px 48px;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 12px 60px}
+
+header{padding:18px 0 10px;border-bottom:1px solid var(--border);margin-bottom:18px}
+.hrow{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.ltag{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:3px;
+  background:rgba(0,212,255,.07);padding:4px 10px;border:1px solid rgba(0,212,255,.2);border-radius:3px}
+header h1{font-size:clamp(17px,4vw,25px);font-weight:800;letter-spacing:-.5px;margin-top:6px}
+header h1 span{color:var(--accent)}
+.sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+
+.tabs{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap}
+.tab{padding:8px 14px;border:1px solid var(--border);border-radius:4px;
+  background:var(--surface);color:var(--muted);font-family:var(--mono);font-size:11px;
+  cursor:pointer;transition:all .2s;white-space:nowrap}
+.tab:hover{border-color:var(--accent);color:var(--accent)}
+.tab.active{background:rgba(0,212,255,.1);border-color:var(--accent);color:var(--accent)}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:14px}
+.ctitle{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:2px;
+  text-transform:uppercase;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+
+.kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:13px 15px;position:relative;overflow:hidden}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent)}
+.kpi.g::before{background:linear-gradient(90deg,var(--accent2),transparent)}
+.kpi.w::before{background:linear-gradient(90deg,var(--warn),transparent)}
+.kpi.p::before{background:linear-gradient(90deg,var(--imesb),transparent)}
+.kl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+.kv{font-family:var(--mono);font-size:17px;font-weight:700;color:var(--text);margin-top:4px;word-break:break-all}
+.ks{font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px}
+
+.lbadge{display:inline-flex;align-items:center;gap:4px;font-family:var(--mono);font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px}
+.lI{background:rgba(167,139,250,.12);border:1px solid rgba(167,139,250,.3);color:var(--imesb)}
+.lB{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);color:var(--barroquinha)}
+.lG{background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.3);color:var(--iguatemi)}
+
+.tag{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:3px;
+  background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.15);color:var(--accent)}
+.tag.g{background:rgba(0,255,157,.07);border-color:rgba(0,255,157,.2);color:var(--accent2)}
+.tag.r{background:rgba(255,71,87,.07);border-color:rgba(255,71,87,.2);color:var(--danger)}
+.tag.w{background:rgba(255,184,0,.07);border-color:rgba(255,184,0,.2);color:var(--warn)}
+
+.pb-wrap{margin-top:6px}
+.pbl{font-family:var(--mono);font-size:10px;color:var(--muted);display:flex;justify-content:space-between;margin-bottom:3px}
+.pb{height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.pbf{height:100%;border-radius:2px;transition:width .4s}
+
+label{font-family:var(--mono);font-size:11px;color:var(--muted);display:block;margin-bottom:4px;margin-top:10px}
+input,select,textarea{width:100%;padding:9px 12px;background:var(--surface);border:1px solid var(--border);
+  border-radius:5px;color:var(--text);font-family:var(--mono);font-size:13px;outline:none;transition:border .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--accent)}
+input[type=file]{padding:6px}
+
+.btn{display:flex;align-items:center;justify-content:center;gap:6px;padding:10px 20px;margin-top:12px;
+  border:1px solid var(--accent);border-radius:5px;background:rgba(0,212,255,.08);color:var(--accent);
+  font-family:var(--mono);font-size:12px;cursor:pointer;width:100%;transition:all .2s;letter-spacing:1px}
+.btn:hover{background:rgba(0,212,255,.18)}
+.btn.g{border-color:var(--accent2);color:var(--accent2);background:rgba(0,255,157,.07)}
+.btn.g:hover{background:rgba(0,255,157,.15)}
+
+.prev-box{margin-top:10px;padding:12px 16px;background:rgba(0,255,157,.04);
+  border:1px solid rgba(0,255,157,.2);border-radius:6px;display:none}
+.prev-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px;margin-bottom:4px}
+.prev-val{font-family:var(--mono);font-size:24px;font-weight:700;color:var(--accent2)}
+.prev-sub{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
+
+.info-box{margin-top:8px;padding:10px 14px;background:var(--surface);
+  border:1px solid var(--border);border-radius:5px;font-family:var(--mono);font-size:11px;color:var(--muted)}
+
+.saldo-item{padding:12px;border:1px solid var(--border);border-radius:6px;margin-bottom:8px;background:var(--surface)}
+.si-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px}
+.si-nome{font-size:13px;font-weight:600;margin-bottom:6px}
+
+.u-grid{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.u-dot{width:20px;height:20px;border-radius:4px;border:1px solid var(--border);
+  background:var(--surface);display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:9px;color:var(--muted);position:relative}
+.u-dot.done-I{background:rgba(167,139,250,.2);border-color:var(--imesb);color:var(--imesb)}
+.u-dot.done-B{background:rgba(245,158,11,.15);border-color:var(--barroquinha);color:var(--barroquinha)}
+.u-dot.done-G{background:rgba(52,211,153,.15);border-color:var(--iguatemi);color:var(--iguatemi)}
+.u-dot.prev{background:rgba(0,212,255,.06);border-color:rgba(0,212,255,.25);border-style:dashed}
+
+.exec-item{border:1px solid var(--border);border-radius:6px;padding:12px;margin-bottom:8px;background:var(--surface)}
+.exec-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px}
+.exec-val{font-family:var(--mono);font-size:15px;font-weight:700;color:var(--accent2)}
+.exec-meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px}
+.exec-foto{width:100%;max-height:200px;object-fit:cover;border-radius:5px;margin-top:8px;border:1px solid var(--border)}
+.del{font-family:var(--mono);font-size:10px;color:var(--danger);cursor:pointer;
+  padding:2px 8px;border:1px solid rgba(255,71,87,.3);border-radius:3px;background:rgba(255,71,87,.04);
+  margin-top:5px;display:inline-block}
+.del:hover{background:rgba(255,71,87,.14)}
+
+.med-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+.med-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--border);color:var(--muted);letter-spacing:1px;font-size:10px}
+.med-table td{padding:7px 8px;border-bottom:1px solid var(--border);vertical-align:middle}
+.med-table tr:last-child td{border-bottom:none}
+.med-table .vr{text-align:right}.med-table .vc{color:var(--accent2);font-weight:700;text-align:right}
+
+.total-bar{background:rgba(0,255,157,.05);border:1px solid rgba(0,255,157,.18);border-radius:6px;
+  padding:14px 16px;margin-top:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.total-lbl{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:2px}
+.total-val{font-family:var(--mono);font-size:22px;font-weight:700;color:var(--accent2)}
+
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:12px;margin-bottom:18px}
+.loc-card{background:var(--card);border:1px solid var(--border);border-radius:8px;
+  padding:14px 14px 14px 20px;position:relative;overflow:hidden}
+.loc-card::before{content:'';position:absolute;top:0;left:0;width:4px;bottom:0;border-radius:8px 0 0 8px}
+.loc-card.I::before{background:var(--imesb)}
+.loc-card.B::before{background:var(--barroquinha)}
+.loc-card.G::before{background:var(--iguatemi)}
+
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.pill{font-family:var(--mono);font-size:11px;padding:4px 14px;border-radius:20px;cursor:pointer;
+  border:1px solid var(--border);color:var(--muted);background:var(--surface);transition:all .2s}
+.pill.pa{border-color:var(--accent);color:var(--accent);background:rgba(0,212,255,.08)}
+.pill.pI{border-color:var(--imesb);color:var(--imesb);background:rgba(167,139,250,.08)}
+.pill.pB{border-color:var(--barroquinha);color:var(--barroquinha);background:rgba(245,158,11,.08)}
+.pill.pG{border-color:var(--iguatemi);color:var(--iguatemi);background:rgba(52,211,153,.08)}
+
+/* ── PLANTA TÉCNICA ── */
+.planta-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.planta-tab{padding:7px 16px;border:1px solid var(--border);border-radius:4px;
+  background:var(--surface);color:var(--muted);font-family:var(--mono);font-size:11px;
+  cursor:pointer;transition:all .2s}
+.planta-tab:hover{border-color:var(--accent);color:var(--accent)}
+.planta-tab.active.I{border-color:var(--imesb);color:var(--imesb);background:rgba(167,139,250,.08)}
+.planta-tab.active.B{border-color:var(--barroquinha);color:var(--barroquinha);background:rgba(245,158,11,.08)}
+.planta-tab.active.G{border-color:var(--iguatemi);color:var(--iguatemi);background:rgba(52,211,153,.08)}
+
+.planta-view{display:none}.planta-view.active{display:block}
+
+.svg-wrap{width:100%;overflow-x:auto;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px}
+.svg-wrap svg{display:block;width:100%;min-width:520px}
+
+/* dimensionamento table */
+.dim-table{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px;margin-top:10px}
+.dim-table th{text-align:left;padding:7px 10px;border-bottom:2px solid var(--border);color:var(--muted);font-size:10px;letter-spacing:1px}
+.dim-table td{padding:7px 10px;border-bottom:1px solid var(--border);vertical-align:middle}
+.dim-table tr:last-child td{border-bottom:none}
+.dim-table td:nth-child(3),.dim-table td:nth-child(4){text-align:right;font-family:var(--mono)}
+.dim-table .subtotal td{background:rgba(0,255,157,.04);color:var(--accent2);font-weight:700;border-top:1px solid rgba(0,255,157,.2)}
+
+.obs-box{background:rgba(255,184,0,.05);border:1px solid rgba(255,184,0,.2);border-radius:5px;
+  padding:10px 14px;font-family:var(--mono);font-size:11px;color:var(--warn);margin-top:10px;line-height:1.6}
+
+.screen{display:none}.screen.active{display:block}
+.toast{position:fixed;bottom:20px;right:20px;background:var(--card);border:1px solid var(--accent2);
+  border-radius:6px;padding:10px 18px;font-family:var(--mono);font-size:12px;color:var(--accent2);
+  z-index:999;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="hrow">
+    <span class="ltag">ATA 001/2023 · DESENVOLVE-SE</span>
+    <span class="ltag" id="dataHoje"></span>
+  </div>
+  <h1>Fiscalização <span>Videomonitoramento</span></h1>
+  <div class="sub">IMESB · BARROQUINHA · IGUATEMI — MEDIÇÃO UNITÁRIA POR LOCAL</div>
+</header>
+
+<div class="kgrid">
+  <div class="kpi"><div class="kl">Valor Total ATA</div><div class="kv">R$ 150,7M</div><div class="ks">22 itens · limite contratual</div></div>
+  <div class="kpi g"><div class="kl">Medição Acumulada</div><div class="kv" id="kpiTotal">R$ 0,00</div><div class="ks" id="kpiPct">0,0000% do contrato</div></div>
+  <div class="kpi w"><div class="kl">Saldo Contratual</div><div class="kv" id="kpiSaldo">R$ 150,7M</div><div class="ks">disponível para empenho</div></div>
+  <div class="kpi p"><div class="kl">Unidades Instaladas</div><div class="kv" id="kpiRegs">0</div><div class="ks">registros de execução</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="goTo('locais')">🏢 Locais</div>
+  <div class="tab" onclick="goTo('ata')">📋 ATA</div>
+  <div class="tab" onclick="goTo('exec')">🔧 Registrar</div>
+  <div class="tab" onclick="goTo('med')">💰 Medição</div>
+  <div class="tab" onclick="goTo('planta')">📐 Plantas & Dimensionamento</div>
+</div>
+
+<!-- ══ LOCAIS ══ -->
+<div id="screen-locais" class="screen active">
+  <div class="loc-grid">
+    <div class="loc-card I">
+      <div style="font-weight:700;font-size:14px;margin-bottom:2px">🏥 IMESB</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:10px">Instituto Médico e Social da Bahia</div>
+      <div style="font-family:var(--mono);font-size:11px" id="statI">—</div>
+      <div class="pb-wrap" style="margin-top:8px">
+        <div class="pbl"><span>Execução local</span><span id="pctI">0%</span></div>
+        <div class="pb"><div class="pbf" id="barI" style="width:0%;background:var(--imesb)"></div></div>
+      </div>
+    </div>
+    <div class="loc-card B">
+      <div style="font-weight:700;font-size:14px;margin-bottom:2px">⛪ Barroquinha</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:10px">Complexo Cultural da Barroquinha</div>
+      <div style="font-family:var(--mono);font-size:11px" id="statB">—</div>
+      <div class="pb-wrap" style="margin-top:8px">
+        <div class="pbl"><span>Execução local</span><span id="pctB">0%</span></div>
+        <div class="pb"><div class="pbf" id="barB" style="width:0%;background:var(--barroquinha)"></div></div>
+      </div>
+    </div>
+    <div class="loc-card G">
+      <div style="font-weight:700;font-size:14px;margin-bottom:2px">🛒 Iguatemi</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-bottom:10px">Shopping Iguatemi</div>
+      <div style="font-family:var(--mono);font-size:11px" id="statG">—</div>
+      <div class="pb-wrap" style="margin-top:8px">
+        <div class="pbl"><span>Execução local</span><span id="pctG">0%</span></div>
+        <div class="pb"><div class="pbf" id="barG" style="width:0%;background:var(--iguatemi)"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="ctitle">📦 Unidades por Item — Previsto vs Executado</div>
+    <div id="saldoList"></div>
+  </div>
+</div>
+
+<!-- ══ ATA ══ -->
+<div id="screen-ata" class="screen">
+  <div class="card">
+    <div class="ctitle">📋 Itens da Ata de Registro de Preços</div>
+    <div id="listaAta"></div>
+  </div>
+</div>
+
+<!-- ══ REGISTRAR ══ -->
+<div id="screen-exec" class="screen">
+  <div class="card">
+    <div class="ctitle">🔧 Registrar Execução — Unidade</div>
+    <label>Local de Instalação</label>
+    <select id="selLocal" onchange="onLocalChange()">
+      <option value="I">🏥 IMESB</option>
+      <option value="B">⛪ Barroquinha</option>
+      <option value="G">🛒 Iguatemi</option>
+    </select>
+    <label>Item da ATA</label>
+    <select id="selItem" onchange="onItemChange()"></select>
+    <div class="info-box" id="itemInfo">Selecione o local e o item.</div>
+    <div class="prev-box" id="prevBox">
+      <div class="prev-label">VALOR DESTA MEDIÇÃO</div>
+      <div class="prev-val" id="prevVal">—</div>
+      <div class="prev-sub" id="prevSub">—</div>
+    </div>
+    <label>Quantidade neste registro</label>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+      <button type="button" onclick="adjQtd(-1)" style="width:40px;padding:9px 0;border:1px solid var(--border);border-radius:5px;background:var(--surface);color:var(--text);font-size:18px;cursor:pointer;flex-shrink:0">−</button>
+      <input type="number" id="qtdExec" value="1" min="1" step="1" oninput="onQtdChange()" style="text-align:center;font-size:18px;font-weight:700">
+      <button type="button" onclick="adjQtd(1)" style="width:40px;padding:9px 0;border:1px solid var(--border);border-radius:5px;background:var(--surface);color:var(--text);font-size:18px;cursor:pointer;flex-shrink:0">+</button>
+    </div>
+    <label>Data da Execução</label>
+    <input type="date" id="dataExec">
+    <label>Referência / Localização no local</label>
+    <input type="text" id="refExec" placeholder="Ex: Câmera 01 — entrada principal">
+    <label>Observação</label>
+    <textarea id="obsExec" rows="2" placeholder="Notas de campo..."></textarea>
+    <label>Foto (opcional)</label>
+    <input type="file" id="fotoExec" accept="image/*" capture="environment">
+    <button class="btn g" onclick="registrar()">✅ Registrar Execução</button>
+  </div>
+  <div class="card">
+    <div class="ctitle">📂 Histórico de Execuções</div>
+    <div class="pills" id="histPills">
+      <div class="pill pa" onclick="setFilt('*',this)">Todos</div>
+      <div class="pill" onclick="setFilt('I',this)">🏥 IMESB</div>
+      <div class="pill" onclick="setFilt('B',this)">⛪ Barroquinha</div>
+      <div class="pill" onclick="setFilt('G',this)">🛒 Iguatemi</div>
+    </div>
+    <div id="listaExec"></div>
+  </div>
+</div>
+
+<!-- ══ MEDIÇÃO ══ -->
+<div id="screen-med" class="screen">
+  <div class="card">
+    <div class="ctitle">💰 Medição por Local</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px" id="medLocais"></div>
+  </div>
+  <div class="card">
+    <div class="ctitle">📑 Consolidado por Item × Local</div>
+    <div style="overflow-x:auto">
+      <table class="med-table">
+        <thead><tr>
+          <th>#</th><th>ITEM</th><th class="vr">UNID</th><th>LOCAL</th>
+          <th class="vr">VL. UNIT.</th><th class="vc">MEDIÇÃO</th>
+        </tr></thead>
+        <tbody id="medTbody"></tbody>
+      </table>
+    </div>
+    <div class="total-bar">
+      <div>
+        <div class="total-lbl">TOTAL ACUMULADO</div>
+        <div class="total-val" id="medTotal">R$ 0,00</div>
+      </div>
+      <div style="text-align:right">
+        <div class="total-lbl">% DO CONTRATO</div>
+        <div style="font-family:var(--mono);font-size:20px;font-weight:700;color:var(--warn)" id="medPct">0,0000%</div>
+      </div>
+    </div>
+    <div class="pb-wrap" style="margin-top:10px">
+      <div class="pbl"><span>Execução global</span><span id="pbLabel">0%</span></div>
+      <div class="pb" style="height:5px">
+        <div class="pbf" id="pbGlobal" style="width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2))"></div>
+      </div>
+    </div>
+  </div>
+  <button class="btn" onclick="gerarPDF()">📄 Gerar Relatório PDF</button>
+</div>
+
+<!-- ══ PLANTAS & DIMENSIONAMENTO ══ -->
+<div id="screen-planta" class="screen">
+
+  <div class="planta-tabs">
+    <div class="planta-tab active G" onclick="goPlanta('G',this)">🛒 Iguatemi</div>
+    <div class="planta-tab" onclick="goPlanta('I',this)">🏥 IMESB</div>
+    <div class="planta-tab" onclick="goPlanta('B',this)">⛪ Barroquinha</div>
+  </div>
+
+  <!-- ── IGUATEMI ── -->
+  <div id="planta-G" class="planta-view active">
+    <div class="card">
+      <div class="ctitle">📐 Planta Técnica — Iguatemi · 162m × 48m · ~14.000 m²</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 680 400" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <!-- Título -->
+          <text x="340" y="20" text-anchor="middle" font-family="'JetBrains Mono'" font-size="11" fill="#607090">Planta técnica indicativa · Cobertura básica perimetral · escala proporcional</text>
+          <!-- Escala gráfica: 162m -> 440px, 1px≈0.37m -->
+          <line x1="90" y1="35" x2="362" y2="35" stroke="#1e304d" stroke-width="1"/>
+          <line x1="90" y1="31" x2="90" y2="39" stroke="#1e304d" stroke-width="1"/>
+          <line x1="226" y1="31" x2="226" y2="39" stroke="#1e304d" stroke-width="1"/>
+          <line x1="362" y1="31" x2="362" y2="39" stroke="#1e304d" stroke-width="1"/>
+          <text x="158" y="48" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">50m</text>
+          <text x="294" y="48" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">50m</text>
+          <!-- Terreno: x=90..530, y=80..210 -->
+          <rect x="90" y="80" width="440" height="130" rx="4" fill="#0d1420" stroke="#34d399" stroke-width="1.5"/>
+          <!-- Cotas -->
+          <line x1="90" y1="66" x2="530" y2="66" stroke="#1e304d" stroke-width="0.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+          <text x="310" y="62" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">162 m</text>
+          <line x1="548" y1="80" x2="548" y2="210" stroke="#1e304d" stroke-width="0.5" marker-start="url(#arr)" marker-end="url(#arr)"/>
+          <text x="574" y="150" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">48 m</text>
+          <!-- Guarita -->
+          <rect x="60" y="122" width="30" height="26" rx="3" fill="#1e304d" stroke="#00d4ff" stroke-width="1"/>
+          <text x="75" y="139" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#00d4ff">G</text>
+          <!-- Portão -->
+          <line x1="90" y1="125" x2="90" y2="147" stroke="#ffb800" stroke-width="2.5" stroke-dasharray="4 2"/>
+          <!-- Backbone rede -->
+          <polyline points="115,103 225,80 360,80 467,82 525,108 525,182 467,208 360,210 225,210 115,187 115,103"
+            fill="none" stroke="#1e304d" stroke-width="1" stroke-dasharray="5 3"/>
+          <!-- Campos de visão PTZ (suaves) -->
+          <path d="M110 95 L195 80 L240 95 Z" fill="#ff4757" opacity="0.10"/>
+          <path d="M110 95 L100 140 L125 158 Z" fill="#ff4757" opacity="0.08"/>
+          <path d="M110 195 L170 205 L225 195 Z" fill="#ff4757" opacity="0.10"/>
+          <path d="M110 195 L100 150 L125 135 Z" fill="#ff4757" opacity="0.08"/>
+          <path d="M510 95 L435 80 L385 95 Z" fill="#ff4757" opacity="0.10"/>
+          <path d="M510 95 L522 140 L498 158 Z" fill="#ff4757" opacity="0.08"/>
+          <path d="M510 195 L435 205 L385 195 Z" fill="#ff4757" opacity="0.10"/>
+          <path d="M510 195 L522 150 L498 135 Z" fill="#ff4757" opacity="0.08"/>
+          <!-- PTZ câmeras -->
+          <circle cx="110" cy="95" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="110" y="99" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ff4757">P1</text>
+          <circle cx="110" cy="195" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="110" y="199" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ff4757">P2</text>
+          <circle cx="510" cy="95" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="510" y="99" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ff4757">P3</text>
+          <circle cx="510" cy="195" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="510" y="199" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ff4757">P4</text>
+          <!-- Postes 6M -->
+          <polygon points="270,80 280,68 290,80" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="280" y="66" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ffb800">6M</text>
+          <polygon points="270,210 280,222 290,210" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="280" y="232" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ffb800">6M</text>
+          <polygon points="140,80 150,68 160,80" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="150" y="66" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#ffb800">6M</text>
+          <!-- Postes 12M -->
+          <rect x="458" y="74" width="16" height="16" rx="2" fill="#00ff9d22" stroke="#00ff9d" stroke-width="1"/>
+          <text x="466" y="85" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00ff9d">12</text>
+          <text x="466" y="67" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00ff9d">12M</text>
+          <rect x="458" y="200" width="16" height="16" rx="2" fill="#00ff9d22" stroke="#00ff9d" stroke-width="1"/>
+          <text x="466" y="211" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00ff9d">12</text>
+          <text x="466" y="226" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00ff9d">12M</text>
+          <!-- Caixas herméticas (8) -->
+          <rect x="105" y="109" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="105" y="173" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="220" y="76" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="220" y="206" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="354" y="76" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="354" y="206" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="519" y="109" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="519" y="173" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <!-- NOC -->
+          <rect x="118" y="126" width="46" height="28" rx="3" fill="#0d1420" stroke="#607090" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="141" y="138" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">NOC</text>
+          <text x="141" y="149" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">posto</text>
+          <!-- LEGENDA -->
+          <rect x="90" y="248" width="490" height="136" rx="4" fill="none" stroke="#1e304d" stroke-width="0.5" stroke-dasharray="4 3"/>
+          <text x="335" y="264" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5" font-weight="700">Legenda</text>
+          <!-- l1 -->
+          <circle cx="115" cy="283" r="7" fill="#ff475722" stroke="#ff4757" stroke-width="1"/>
+          <text x="110" y="287" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P</text>
+          <text x="130" y="287" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5">PTZ HIKVISION DS-2DE5232W-AE — 4 un.</text>
+          <!-- l2 -->
+          <polygon points="110,305 117,295 124,305" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="130" y="305" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5">Poste 6M METALSINTER — 3 un.</text>
+          <!-- l3 -->
+          <rect x="107" y="316" width="14" height="12" rx="2" fill="#00ff9d22" stroke="#00ff9d" stroke-width="1"/>
+          <text x="130" y="326" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5">Poste 12M METALSINTER — 2 un.</text>
+          <!-- l4 -->
+          <rect x="107" y="336" width="14" height="10" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="1"/>
+          <text x="130" y="345" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5">Caixa hermética + switch + nobreak — 8 un.</text>
+          <!-- l5 -->
+          <line x1="107" y1="361" x2="121" y2="361" stroke="#1e304d" stroke-width="1" stroke-dasharray="5 3"/>
+          <text x="130" y="365" font-family="'JetBrains Mono'" font-size="10" fill="#e2eaf5">Backbone de rede (CAT6/fibra) · 420m perimetral</text>
+          <!-- total -->
+          <text x="575" y="365" text-anchor="end" font-family="'JetBrains Mono'" font-size="10" fill="#00ff9d" font-weight="700">Total: R$ 585.676,80/ano</text>
+        </svg>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">📊 Dimensionamento Técnico — Iguatemi</div>
+      <div class="obs-box">⚡ Terreno: 162m × 48m · Perímetro: 420m · Cobertura básica perimetral · Infraestrutura 100% nova</div>
+      <div style="overflow-x:auto">
+        <table class="dim-table">
+          <thead><tr><th>#ATA</th><th>ITEM / JUSTIFICATIVA TÉCNICA</th><th>QTD</th><th>VL. ANUAL</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="tag" style="white-space:nowrap">01</td>
+              <td>
+                <b style="color:var(--text)">Sol. Captura 1 — PTZ HIKVISION DS-2DE5232W-AE</b><br>
+                <span style="font-size:10px;color:var(--muted)">4 cantos do terreno · zoom 32× · alcance ~150m · cobre eixos longitudinais (162m) e laterais (48m) por varredura</span>
+              </td>
+              <td>4</td><td style="color:var(--accent2)">R$ 64.728,00</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">02</td>
+              <td>
+                <b style="color:var(--text)">Sol. Captura 2 — LPR Varifocal HIKVISION</b><br>
+                <span style="font-size:10px;color:var(--muted)">Portão de entrada principal · leitura de placas · complementa PTZ da guarita</span>
+              </td>
+              <td>1</td><td style="color:var(--accent2)">R$ 18.637,20</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">04</td>
+              <td>
+                <b style="color:var(--text)">Sol. Captura 4 — Bullet Fixa HIKVISION DS-2CD2043G2</b><br>
+                <span style="font-size:10px;color:var(--muted)">36 pontos fixos ao longo do perímetro · espaçamento ~11m · complementa PTZs com visão fixa contínua</span>
+              </td>
+              <td>36</td><td style="color:var(--accent2)">R$ 208.915,20</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">06</td>
+              <td>
+                <b style="color:var(--text)">SGA-LIC — Licença por câmera</b><br>
+                <span style="font-size:10px;color:var(--muted)">41 licenças = 4 PTZ + 1 LPR + 36 Bullet · 1 licença por câmera gerenciada</span>
+              </td>
+              <td>41</td><td style="color:var(--accent2)">R$ 89.224,20</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">16</td>
+              <td>
+                <b style="color:var(--text)">Posteamento 6M — METALSINTER cônico flangeado</b><br>
+                <span style="font-size:10px;color:var(--muted)">3 postes · laterais norte/sul centro e acesso guarita · altura garante ângulo de depressão adequado</span>
+              </td>
+              <td>3</td><td style="color:var(--accent2)">R$ 24.273,00</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">17</td>
+              <td>
+                <b style="color:var(--text)">Posteamento 12M — METALSINTER cônico flangeado</b><br>
+                <span style="font-size:10px;color:var(--muted)">2 postes no extremo oposto à guarita · ângulo de depressão 4° a 162m · maximiza alcance PTZ</span>
+              </td>
+              <td>2</td><td style="color:var(--accent2)">R$ 33.703,20</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">18</td>
+              <td>
+                <b style="color:var(--text)">Caixa hermética + switch + nobreak</b><br>
+                <span style="font-size:10px;color:var(--muted)">8 caixas · 1 por câmera PTZ + 4 pontos de passagem · segmento CAT6 máx 90m entre caixas no perímetro de 420m</span>
+              </td>
+              <td>8</td><td style="color:var(--accent2)">R$ 111.600,00</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">19</td>
+              <td>
+                <b style="color:var(--text)">Posto de Monitoramento — Dell Optiplex + Monitor Samsung</b><br>
+                <span style="font-size:10px;color:var(--muted)">1 posto na guarita de entrada · operação local das câmeras PTZ + visualização em tempo real</span>
+              </td>
+              <td>1</td><td style="color:var(--accent2)">R$ 34.596,00</td>
+            </tr>
+            <tr>
+              <td class="tag" style="white-space:nowrap">22</td>
+              <td>
+                <b style="color:var(--text)">Serviços Especializados (UST)</b><br>
+                <span style="font-size:10px;color:var(--muted)">250 UST · instalação, passagem de cablagem, comissionamento, testes e treinamento operacional</span>
+              </td>
+              <td>250</td><td style="color:var(--accent2)">R$ 55.800,00</td>
+            </tr>
+            <tr class="subtotal">
+              <td colspan="3">TOTAL ANUAL IGUATEMI</td>
+              <td>R$ 585.676,80</td>
+            </tr>
+            <tr class="subtotal" style="background:rgba(255,184,0,.04)">
+              <td colspan="3" style="color:var(--warn)">SERVIÇOS DE IMPLANTAÇÃO (único)</td>
+              <td style="color:var(--warn)">R$ 55.800,00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── IMESB ── -->
+  <div id="planta-I" class="planta-view">
+    <div class="card">
+      <div class="ctitle">📐 Planta Técnica — IMESB · 58.261,19 m² · Perímetro 1.000,95 m</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 680 348" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+              <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </marker>
+          </defs>
+          <text x="340" y="18" text-anchor="middle" font-family="'JetBrains Mono'" font-size="11" fill="#607090">Planta técnica indicativa — IMESB · 58.261,19 m² · Perímetro real: 1.000,95 m</text>
+          <!-- Terreno irregular representado como polígono -->
+          <polygon points="80,50 580,50 580,270 380,270 380,200 200,200 200,270 80,270"
+            fill="#0d1420" stroke="#a78bfa" stroke-width="1.5"/>
+          <!-- Recuo interno (área coberta) -->
+          <text x="330" y="145" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">Área edificada / pátio interno</text>
+          <!-- PTZ câmeras (6) nos cantos principais -->
+          <circle cx="90" cy="62" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="90" y="66" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P1</text>
+          <circle cx="570" cy="62" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="570" y="66" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P2</text>
+          <circle cx="570" cy="258" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="570" y="262" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P3</text>
+          <circle cx="390" cy="192" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="390" y="196" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P4</text>
+          <circle cx="90" cy="258" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="90" y="262" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P5</text>
+          <circle cx="190" cy="192" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="190" y="196" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P6</text>
+          <!-- Bullets perimetrais — representados como pontos menores -->
+          <!-- Lateral superior (73 bullets = ~1 a cada 7m, representando alguns) -->
+          <text x="330" y="46" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#a78bfa">· · · 73 câmeras bullet · espaçamento médio ~13,7m no perímetro de 1.001m · · ·</text>
+          <!-- Bullets distribuídos ilustrativamente -->
+          <circle cx="170" cy="54" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="250" cy="54" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="330" cy="54" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="410" cy="54" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="490" cy="54" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="576" cy="140" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="576" cy="190" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="84" cy="140" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="84" cy="190" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <!-- LPR - 1 unidade portão -->
+          <rect x="116" y="44" width="18" height="12" rx="2" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="125" y="54" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ffb800">LPR</text>
+          <!-- Caixas herméticas (12) -->
+          <rect x="81" y="96" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="81" y="160" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="570" y="96" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="570" y="160" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="195" y="44" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="345" y="44" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="465" y="44" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="195" y="196" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="285" y="196" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="375" y="196" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="195" y="262" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <rect x="345" y="262" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <!-- Posto monitoramento (2) -->
+          <rect x="240" y="105" width="50" height="28" rx="3" fill="#0d1420" stroke="#607090" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="265" y="117" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">NOC 1</text>
+          <text x="265" y="128" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">posto</text>
+          <rect x="380" y="105" width="50" height="28" rx="3" fill="#0d1420" stroke="#607090" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="405" y="117" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">NOC 2</text>
+          <text x="405" y="128" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">posto</text>
+          <!-- Legenda compacta -->
+          <text x="90" y="296" font-family="'JetBrains Mono'" font-size="10" fill="#ff4757">● PTZ (6)</text>
+          <text x="160" y="296" font-family="'JetBrains Mono'" font-size="10" fill="#a78bfa">● Bullet (73)</text>
+          <text x="260" y="296" font-family="'JetBrains Mono'" font-size="10" fill="#ffb800">▬ LPR (1)</text>
+          <text x="330" y="296" font-family="'JetBrains Mono'" font-size="10" fill="#00d4ff">■ Cx.Hermética (12)</text>
+          <text x="490" y="296" font-family="'JetBrains Mono'" font-size="10" fill="#607090">▭ Posto NOC (2)</text>
+          <text x="340" y="314" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#00ff9d" font-weight="700">Total: R$ 950.050,80/ano + R$ 55.800,00 implantação</text>
+          <text x="340" y="328" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">Área: 58.261,19 m² · Perímetro: 1.000,95 m · Espaçamento bullet: ~13,7m · Setor PTZ: ~167m</text>
+        </svg>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">📊 Dimensionamento Técnico — IMESB</div>
+      <div class="obs-box">⚡ Área real: 58.261,19 m² · Perímetro real: 1.000,95 m (~1km) · 73 bullets = espaçamento médio 13,7m (cobertura básica) · 6 PTZs cobrem ~167m/unidade por varredura · 12 caixas herméticas = 1 a cada ~83m (dentro do limite CAT6 de 90m) · Dois postos NOC</div>
+      <div style="overflow-x:auto">
+        <table class="dim-table">
+          <thead><tr><th>#ATA</th><th>ITEM / JUSTIFICATIVA TÉCNICA</th><th>QTD</th><th>VL. ANUAL</th></tr></thead>
+          <tbody>
+            <tr><td class="tag">01</td>
+              <td><b style="color:var(--text)">Sol. Captura 1 — PTZ HIKVISION DS-2DE5232W-AE</b><br>
+                <span style="font-size:10px;color:var(--muted)">6 unidades · perímetro de ~1km dividido em 6 setores de ~167m · PTZ DS-2DE5232W-AE zoom 32× cobre cada setor por varredura ativa · cantos + pontos elevados internos</span></td>
+              <td>6</td><td style="color:var(--accent2)">R$ 97.092,00</td></tr>
+            <tr><td class="tag">02</td>
+              <td><b style="color:var(--text)">Sol. Captura 2 — LPR Varifocal</b><br>
+                <span style="font-size:10px;color:var(--muted)">1 unidade · portão de acesso veicular principal</span></td>
+              <td>1</td><td style="color:var(--accent2)">R$ 18.637,20</td></tr>
+            <tr><td class="tag">04</td>
+              <td><b style="color:var(--text)">Sol. Captura 4 — Bullet Fixa</b><br>
+                <span style="font-size:10px;color:var(--muted)">73 unidades · perímetro real 1.000,95m · espaçamento médio 13,7m entre câmeras · DS-2CD2043G2 lente 2.8mm: ângulo 104°, alcance detecção ~20-25m · cobertura básica sem pontos cegos críticos</span></td>
+              <td>73</td><td style="color:var(--accent2)">R$ 423.633,60</td></tr>
+            <tr><td class="tag">06</td>
+              <td><b style="color:var(--text)">SGA-LIC — Licença por câmera</b><br>
+                <span style="font-size:10px;color:var(--muted)">80 licenças = 6+1+73 câmeras</span></td>
+              <td>80</td><td style="color:var(--accent2)">R$ 174.096,00</td></tr>
+            <tr><td class="tag">18</td>
+              <td><b style="color:var(--text)">Caixa hermética + switch + nobreak</b><br>
+                <span style="font-size:10px;color:var(--muted)">12 caixas · 1 a cada ~83m no perímetro de 1.001m · respeita limite de 90m por segmento CAT6 · switch local em cada caixa concentra câmeras do trecho</span></td>
+              <td>12</td><td style="color:var(--accent2)">R$ 167.400,00</td></tr>
+            <tr><td class="tag">19</td>
+              <td><b style="color:var(--text)">Posto de Monitoramento</b><br>
+                <span style="font-size:10px;color:var(--muted)">2 postos · complexo maior exige redundância de monitoramento</span></td>
+              <td>2</td><td style="color:var(--accent2)">R$ 69.192,00</td></tr>
+            <tr><td class="tag">22</td>
+              <td><b style="color:var(--text)">Serviços Especializados (UST)</b><br>
+                <span style="font-size:10px;color:var(--muted)">250 UST · ~1km de cabeamento perimetral + 80 câmeras + 12 caixas herméticas + 2 postos NOC · maior carga de instalação dos 3 locais</span></td>
+              <td>250</td><td style="color:var(--accent2)">R$ 55.800,00</td></tr>
+            <tr class="subtotal"><td colspan="3">TOTAL ANUAL IMESB</td><td>R$ 950.050,80</td></tr>
+            <tr class="subtotal" style="background:rgba(255,184,0,.04)"><td colspan="3" style="color:var(--warn)">SERVIÇOS DE IMPLANTAÇÃO</td><td style="color:var(--warn)">R$ 55.800,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── BARROQUINHA ── -->
+  <div id="planta-B" class="planta-view">
+    <div class="card">
+      <div class="ctitle">📐 Planta Técnica — Barroquinha · Complexo compacto + SGA centralizado</div>
+      <div class="svg-wrap">
+        <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg">
+          <text x="340" y="18" text-anchor="middle" font-family="'JetBrains Mono'" font-size="11" fill="#607090">Planta técnica indicativa — Barroquinha · Solução completa com SGA + Videowall</text>
+          <!-- Terreno compacto com recinto interno -->
+          <rect x="120" y="40" width="340" height="200" rx="4" fill="#0d1420" stroke="#f59e0b" stroke-width="1.5"/>
+          <!-- Área interna (recinto cultural) -->
+          <rect x="175" y="80" width="230" height="120" rx="3" fill="#0d142044" stroke="#f59e0b44" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="290" y="145" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#607090">Recinto cultural interno</text>
+          <!-- PTZ câmeras (2) -->
+          <circle cx="132" cy="52" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="132" y="56" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P1</text>
+          <circle cx="448" cy="52" r="9" fill="#ff475722" stroke="#ff4757" stroke-width="1.2"/>
+          <text x="448" y="56" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ff4757">P2</text>
+          <!-- LPR (3) -->
+          <rect x="196" y="34" width="18" height="12" rx="2" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="205" y="44" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ffb800">LPR</text>
+          <rect x="285" y="34" width="18" height="12" rx="2" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="294" y="44" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ffb800">LPR</text>
+          <rect x="374" y="34" width="18" height="12" rx="2" fill="#ffb80022" stroke="#ffb800" stroke-width="1"/>
+          <text x="383" y="44" text-anchor="middle" font-family="'JetBrains Mono'" font-size="8" fill="#ffb800">LPR</text>
+          <!-- Bullets (6) -->
+          <circle cx="200" cy="44" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="290" cy="44" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="380" cy="44" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="125" cy="150" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="455" cy="150" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <circle cx="290" cy="236" r="4" fill="#a78bfa44" stroke="#a78bfa" stroke-width="0.8"/>
+          <!-- SGA (2 servidores) — destaque -->
+          <rect x="175" y="90" width="95" height="50" rx="3" fill="#00d4ff0a" stroke="#00d4ff" stroke-width="1"/>
+          <text x="222" y="112" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00d4ff">SGA</text>
+          <text x="222" y="124" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#00d4ff">Serv. ×2</text>
+          <!-- Videowall 2x2 -->
+          <rect x="310" y="90" width="80" height="50" rx="3" fill="#a78bfa0a" stroke="#a78bfa" stroke-width="1"/>
+          <text x="350" y="108" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#a78bfa">Videowall</text>
+          <text x="350" y="120" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#a78bfa">2×2</text>
+          <!-- Posto monitoramento -->
+          <rect x="200" y="158" width="50" height="28" rx="3" fill="#0d1420" stroke="#607090" stroke-width="1" stroke-dasharray="3 2"/>
+          <text x="225" y="170" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">NOC</text>
+          <text x="225" y="181" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">posto</text>
+          <!-- Caixa hermética (1) -->
+          <rect x="116" y="86" width="10" height="8" rx="1" fill="#00d4ff22" stroke="#00d4ff" stroke-width="0.7"/>
+          <!-- Legenda compacta -->
+          <text x="120" y="268" font-family="'JetBrains Mono'" font-size="10" fill="#ff4757">● PTZ (2)</text>
+          <text x="193" y="268" font-family="'JetBrains Mono'" font-size="10" fill="#a78bfa">● Bullet (6)</text>
+          <text x="272" y="268" font-family="'JetBrains Mono'" font-size="10" fill="#ffb800">▬ LPR (3)</text>
+          <text x="348" y="268" font-family="'JetBrains Mono'" font-size="10" fill="#00d4ff">■ SGA (2) + Cx.(1)</text>
+          <text x="490" y="268" font-family="'JetBrains Mono'" font-size="10" fill="#a78bfa">⬛ Videowall 2×2</text>
+          <text x="340" y="288" text-anchor="middle" font-family="'JetBrains Mono'" font-size="10" fill="#00ff9d" font-weight="700">Total: R$ 1.208.181,60/ano + R$ 11.160,00 implantação</text>
+          <text x="340" y="305" text-anchor="middle" font-family="'JetBrains Mono'" font-size="9" fill="#607090">Maior valor total por incluir SGA completo (R$ 910.656,00 = 75% do total)</text>
+        </svg>
+      </div>
+    </div>
+    <div class="card">
+      <div class="ctitle">📊 Dimensionamento Técnico — Barroquinha</div>
+      <div class="obs-box">⚡ Local mais caro por incluir 2 unidades de SGA completo (R$ 455.328/un.) + Videowall 2×2. O SGA aqui centraliza o gerenciamento de todos os locais.</div>
+      <div style="overflow-x:auto">
+        <table class="dim-table">
+          <thead><tr><th>#ATA</th><th>ITEM / JUSTIFICATIVA TÉCNICA</th><th>QTD</th><th>VL. ANUAL</th></tr></thead>
+          <tbody>
+            <tr><td class="tag">01</td>
+              <td><b style="color:var(--text)">Sol. Captura 1 — PTZ</b><br>
+                <span style="font-size:10px;color:var(--muted)">2 PTZs · cantos do complexo compacto</span></td>
+              <td>2</td><td style="color:var(--accent2)">R$ 32.364,00</td></tr>
+            <tr><td class="tag">02</td>
+              <td><b style="color:var(--text)">Sol. Captura 2 — LPR Varifocal</b><br>
+                <span style="font-size:10px;color:var(--muted)">3 LPRs · múltiplas vias de acesso veicular (complexo cultural com acessos distintos)</span></td>
+              <td>3</td><td style="color:var(--accent2)">R$ 55.911,60</td></tr>
+            <tr><td class="tag">04</td>
+              <td><b style="color:var(--text)">Sol. Captura 4 — Bullet Fixa</b><br>
+                <span style="font-size:10px;color:var(--muted)">6 unidades · complemento perimetral e pontos internos do complexo cultural</span></td>
+              <td>6</td><td style="color:var(--accent2)">R$ 34.819,20</td></tr>
+            <tr><td class="tag">05</td>
+              <td><b style="color:var(--text)">Sol. Gerenciamento SGA — servidor completo</b><br>
+                <span style="font-size:10px;color:var(--muted)">2 SGAs · este local centraliza o gerenciamento de TODA a solução dos 3 locais · redundância ativa/passiva</span></td>
+              <td>2</td><td style="color:var(--accent2)">R$ 910.656,00</td></tr>
+            <tr><td class="tag">06</td>
+              <td><b style="color:var(--text)">SGA-LIC — Licença por câmera</b><br>
+                <span style="font-size:10px;color:var(--muted)">11 licenças locais = 2+3+6</span></td>
+              <td>11</td><td style="color:var(--accent2)">R$ 23.938,20</td></tr>
+            <tr><td class="tag">18</td>
+              <td><b style="color:var(--text)">Caixa hermética + switch + nobreak</b><br>
+                <span style="font-size:10px;color:var(--muted)">1 caixa · complexo menor e mais compacto</span></td>
+              <td>1</td><td style="color:var(--accent2)">R$ 13.950,00</td></tr>
+            <tr><td class="tag">19</td>
+              <td><b style="color:var(--text)">Posto de Monitoramento</b><br>
+                <span style="font-size:10px;color:var(--muted)">1 posto central de operação</span></td>
+              <td>1</td><td style="color:var(--accent2)">R$ 34.596,00</td></tr>
+            <tr><td class="tag">21</td>
+              <td><b style="color:var(--text)">Solução Videowall 2×2 — Dell + Monitor 49" + ISS SOS-VWI</b><br>
+                <span style="font-size:10px;color:var(--muted)">1 videowall · sala de monitoramento centralizada · visualização simultânea de múltiplas câmeras</span></td>
+              <td>1</td><td style="color:var(--accent2)">R$ 101.946,60</td></tr>
+            <tr><td class="tag">22</td>
+              <td><b style="color:var(--text)">Serviços Especializados (UST)</b><br>
+                <span style="font-size:10px;color:var(--muted)">50 UST · instalação menor por ser complexo compacto</span></td>
+              <td>50</td><td style="color:var(--accent2)">R$ 11.160,00</td></tr>
+            <tr class="subtotal"><td colspan="3">TOTAL ANUAL BARROQUINHA</td><td>R$ 1.208.181,60</td></tr>
+            <tr class="subtotal" style="background:rgba(255,184,0,.04)"><td colspan="3" style="color:var(--warn)">SERVIÇOS DE IMPLANTAÇÃO</td><td style="color:var(--warn)">R$ 11.160,00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /screen-planta -->
+
+</div><!-- /wrap -->
+<div class="toast" id="toast">✓ Registrado</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+const VALOR_TOTAL_ATA = 150738678.00;
+const ATA = {
+  1:{nome:"Sol. Captura 1 — PTZ",qtdAta:300,valorUnit:16182.00},
+  2:{nome:"Sol. Captura 2 — LPR Varifocal",qtdAta:450,valorUnit:18637.20},
+  3:{nome:"Sol. Captura 3 — Mobile",qtdAta:1500,valorUnit:12499.20},
+  4:{nome:"Sol. Captura 4 — Bullet Fixa",qtdAta:450,valorUnit:5803.20},
+  5:{nome:"Sol. Gerenciamento SGA",qtdAta:24,valorUnit:455328.00},
+  6:{nome:"SGA-LIC (Licença p/ câmera)",qtdAta:2700,valorUnit:2176.20},
+  7:{nome:"Sol. Concentrador SCI",qtdAta:4,valorUnit:69192.00},
+  8:{nome:"SCI-LIC (Licença p/ câmera)",qtdAta:2700,valorUnit:669.60},
+  9:{nome:"Plataforma de Segurança",qtdAta:10,valorUnit:5245200.00},
+  10:{nome:"Plataforma Segurança (Pacote)",qtdAta:10,valorUnit:273978.00},
+  11:{nome:"Plataforma de CAD",qtdAta:10,valorUnit:2765448.00},
+  12:{nome:"Plataforma CAD (Pacote)",qtdAta:10,valorUnit:130125.60},
+  13:{nome:"Plataforma de Emergência",qtdAta:10,valorUnit:133641.00},
+  14:{nome:"Adicional Câmera Legado",qtdAta:200,valorUnit:6026.40},
+  15:{nome:"Adicional LPR Legado",qtdAta:200,valorUnit:1674.00},
+  16:{nome:"Posteamento 6M",qtdAta:100,valorUnit:8091.00},
+  17:{nome:"Posteamento 12M",qtdAta:100,valorUnit:16851.60},
+  18:{nome:"Caixa com Conectividade",qtdAta:200,valorUnit:13950.00},
+  19:{nome:"Posto de Monitoramento",qtdAta:20,valorUnit:34596.00},
+  20:{nome:"Painel Visualização Interativo",qtdAta:10,valorUnit:99714.60},
+  21:{nome:"Solução Videowall 2x2",qtdAta:10,valorUnit:101946.60},
+  22:{nome:"Serviços Especializados (UST)",qtdAta:10000,valorUnit:223.20},
+};
+const LOCAIS={
+  I:{label:'IMESB',icon:'🏥',cor:'var(--imesb)',itens:{1:6,2:1,4:73,6:80,18:12,19:2,22:250},totalAnual:950050.80},
+  B:{label:'Barroquinha',icon:'⛪',cor:'var(--barroquinha)',itens:{1:2,2:3,4:6,5:2,6:11,18:1,19:1,21:1,22:50},totalAnual:1208181.60},
+  G:{label:'Iguatemi',icon:'🛒',cor:'var(--iguatemi)',itens:{1:4,2:1,4:36,6:41,16:3,17:2,18:8,19:1,22:250},totalAnual:585676.80},
+};
+let EXEC=JSON.parse(localStorage.getItem('fisc_v5')||'[]');
+let histFilt='*';
+
+document.getElementById('dataHoje').textContent=new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+document.getElementById('dataExec').value=new Date().toISOString().slice(0,10);
+renderAta();onLocalChange();renderAll();
+
+function goTo(s){
+  document.querySelectorAll('.screen').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el=>el.classList.remove('active'));
+  document.getElementById('screen-'+s).classList.add('active');
+  document.querySelectorAll('.tab')[{locais:0,ata:1,exec:2,med:3,planta:4}[s]].classList.add('active');
+}
+function goPlanta(k,el){
+  document.querySelectorAll('.planta-view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('.planta-tab').forEach(t=>{t.classList.remove('active','I','B','G');});
+  document.getElementById('planta-'+k).classList.add('active');
+  el.classList.add('active',k);
+}
+function renderAta(){
+  document.getElementById('listaAta').innerHTML=Object.entries(ATA).map(([id,i])=>`
+    <div style="display:flex;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:6px;margin-bottom:7px;background:var(--surface)">
+      <div style="font-family:var(--mono);font-size:11px;color:var(--accent);min-width:22px;padding-top:2px">${String(id).padStart(2,'0')}</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:600">${i.nome}</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:5px">
+          <span class="tag">Limite: ${i.qtdAta.toLocaleString('pt-BR')} un.</span>
+          <span class="tag">Vl. Unit.: ${fmt(i.valorUnit)}</span>
+          <span class="tag g">Total ATA: ${fmt(i.qtdAta*i.valorUnit)}</span>
+        </div>
+      </div>
+    </div>`).join('');
+}
+function qtdExecGlobal(id){return EXEC.filter(e=>e.itemId==id).reduce((s,e)=>s+e.qtd,0);}
+function qtdExecLocal(loc,id){return EXEC.filter(e=>e.local===loc&&e.itemId==id).reduce((s,e)=>s+e.qtd,0);}
+function renderSaldos(){
+  const usados=new Set(Object.values(LOCAIS).flatMap(l=>Object.keys(l.itens).map(Number)));
+  document.getElementById('saldoList').innerHTML=Object.entries(ATA).filter(([id])=>usados.has(Number(id))).map(([id,item])=>{
+    const prevTotal=Object.entries(LOCAIS).reduce((s,[,l])=>s+(l.itens[id]||0),0);
+    const execGlob=qtdExecGlobal(id);const pct=prevTotal>0?execGlob/prevTotal*100:0;
+    const cls=pct>=100?'r':pct>=75?'w':'g';
+    const locInfo=Object.entries(LOCAIS).filter(([,l])=>l.itens[id]).map(([k,l])=>{
+      const prev=l.itens[id],exec=qtdExecLocal(k,id);
+      return `<span class="lbadge l${k}">${l.icon} ${exec}/${prev}</span>`;}).join(' ');
+    const MAX_DOTS=50,total=Math.min(prevTotal,MAX_DOTS);
+    let dots='',dotCount=0;
+    Object.entries(LOCAIS).filter(([,l])=>l.itens[id]).forEach(([k,l])=>{
+      const prevLoc=l.itens[id],execLoc=qtdExecLocal(k,id);
+      for(let i=0;i<prevLoc&&dotCount<MAX_DOTS;i++,dotCount++){
+        const done=i<execLoc;
+        dots+=`<div class="u-dot ${done?'done-'+k:'prev'}">${done?'✓':''}</div>`;
+      }
+    });
+    if(prevTotal>MAX_DOTS) dots+=`<div class="u-dot" style="font-size:9px;color:var(--muted);width:auto;padding:0 6px">+${prevTotal-MAX_DOTS}</div>`;
+    return `<div class="saldo-item">
+      <div class="si-head">
+        <div><div class="si-nome">${String(id).padStart(2,'0')} — ${item.nome}</div>
+          <div style="display:flex;gap:5px;flex-wrap:wrap">${locInfo}</div></div>
+        <div style="text-align:right;flex-shrink:0">
+          <span class="tag ${cls}">${execGlob} / ${prevTotal} un.</span>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:4px">${fmt(execGlob*item.valorUnit)}</div>
+        </div>
+      </div>
+      <div class="u-grid">${dots}</div>
+      <div class="pb-wrap" style="margin-top:8px">
+        <div class="pbl"><span>Execução</span><span>${pct.toFixed(0)}%</span></div>
+        <div class="pb"><div class="pbf" style="width:${Math.min(pct,100)}%;background:${cls==='r'?'var(--danger)':cls==='w'?'var(--warn)':'var(--accent2)'}"></div></div>
+      </div></div>`;}).join('');
+}
+function renderLocCards(){
+  ['I','B','G'].forEach(k=>{
+    const loc=LOCAIS[k];
+    const total=EXEC.filter(e=>e.local===k).reduce((s,e)=>s+e.total,0);
+    const pct=loc.totalAnual>0?total/loc.totalAnual*100:0;
+    const unids=EXEC.filter(e=>e.local===k).reduce((s,e)=>s+e.qtd,0);
+    const prevUnids=Object.values(loc.itens).reduce((s,v)=>s+v,0);
+    document.getElementById('stat'+k).innerHTML=
+      `<div style="font-size:13px;font-weight:700;color:var(--text)">${fmt(total)}</div>`+
+      `<div style="color:var(--muted);font-size:10px">de ${fmt(loc.totalAnual)} · ${unids}/${prevUnids} unidades</div>`;
+    document.getElementById('pct'+k).textContent=pct.toFixed(1)+'%';
+    document.getElementById('bar'+k).style.width=Math.min(pct,100)+'%';
+  });
+}
+function onLocalChange(){
+  const loc=document.getElementById('selLocal').value;
+  document.getElementById('selItem').innerHTML=Object.entries(ATA)
+    .filter(([id])=>LOCAIS[loc].itens[id])
+    .map(([id,i])=>{
+      const prev=LOCAIS[loc].itens[id],exec=qtdExecLocal(loc,id),saldo=prev-exec;
+      return `<option value="${id}">${String(id).padStart(2,'0')} — ${i.nome} [${exec}/${prev}]${saldo<=0?' ⚠️':''}</option>`;
+    }).join('');
+  onItemChange();
+}
+function getItemSel(){return ATA[parseInt(document.getElementById('selItem').value)];}
+function onItemChange(){
+  const item=getItemSel();if(!item)return;
+  const loc=document.getElementById('selLocal').value;
+  const prev=LOCAIS[loc].itens[item.id]||0,execL=qtdExecLocal(loc,item.id),execG=qtdExecGlobal(item.id);
+  const saldoL=prev-execL,saldoG=item.qtdAta-execG;
+  document.getElementById('itemInfo').innerHTML=
+    `<span style="color:var(--accent)">${item.nome}</span><br><br>`+
+    `<b style="color:var(--text)">Vl. Unit. Anual:</b> ${fmt(item.valorUnit)}<br>`+
+    `Previsto neste local: <b style="color:var(--warn)">${prev}</b> · Executado: <b style="color:var(--text)">${execL}</b> · `+
+    `<b style="color:${saldoL>0?'var(--accent2)':'var(--danger)'}">Saldo local: ${saldoL}</b><br>`+
+    `<span style="color:var(--muted)">Saldo global ATA: ${saldoG} de ${item.qtdAta}</span>`;
+  onQtdChange();
+}
+function adjQtd(d){const el=document.getElementById('qtdExec');el.value=Math.max(1,parseInt(el.value||1)+d);onQtdChange();}
+function onQtdChange(){
+  const itemId=parseInt(document.getElementById('selItem').value);
+  const qtd=parseInt(document.getElementById('qtdExec').value)||1;
+  if(!itemId)return;
+  const item=ATA[itemId],loc=document.getElementById('selLocal').value;
+  const execL=qtdExecLocal(loc,itemId),prev=LOCAIS[loc].itens[itemId]||0;
+  const box=document.getElementById('prevBox');
+  box.style.display='block';
+  document.getElementById('prevVal').textContent=fmt(qtd*item.valorUnit);
+  document.getElementById('prevSub').innerHTML=`${qtd} un. × ${fmt(item.valorUnit)} · passará para <b style="color:${(execL+qtd)<=prev?'var(--accent2)':'var(--warn)'}">${execL+qtd}/${prev}</b>`;
+}
+function registrar(){
+  const loc=document.getElementById('selLocal').value;
+  const itemId=parseInt(document.getElementById('selItem').value);
+  const qtd=parseInt(document.getElementById('qtdExec').value)||1;
+  if(!itemId){alert('Selecione o item.');return;}
+  const item=ATA[itemId];
+  const saldoL=(LOCAIS[loc].itens[itemId]||0)-qtdExecLocal(loc,itemId);
+  const saldoG=item.qtdAta-qtdExecGlobal(itemId);
+  if(qtd>saldoL&&saldoL>0&&!confirm(`⚠️ Qtd (${qtd}) excede saldo local (${saldoL}). Continuar?`))return;
+  if(qtd>saldoG&&!confirm(`⚠️ Qtd (${qtd}) excede saldo global ATA (${saldoG}). Continuar?`))return;
+  const data=document.getElementById('dataExec').value;
+  const ref=document.getElementById('refExec').value;
+  const obs=document.getElementById('obsExec').value;
+  const foto=document.getElementById('fotoExec');
+  const salvar=(fotoB64)=>{
+    EXEC.push({id:Date.now(),local:loc,itemId,itemNome:item.nome,valorUnit:item.valorUnit,qtd,total:qtd*item.valorUnit,data,ref,obs,foto:fotoB64||null});
+    save();renderAll();showToast(`✓ ${qtd} un. — ${fmt(qtd*item.valorUnit)}`);
+    document.getElementById('qtdExec').value='1';
+    document.getElementById('refExec').value='';
+    document.getElementById('obsExec').value='';
+    document.getElementById('fotoExec').value='';
+    document.getElementById('prevBox').style.display='none';
+    onLocalChange();
+  };
+  if(foto.files[0]){const r=new FileReader();r.onload=e=>salvar(e.target.result);r.readAsDataURL(foto.files[0]);}
+  else salvar(null);
+}
+function setFilt(f,el){
+  histFilt=f;
+  document.querySelectorAll('#histPills .pill').forEach(p=>p.className='pill');
+  el.classList.add('p'+(f==='*'?'a':f));
+  renderExec();
+}
+function renderExec(){
+  const div=document.getElementById('listaExec');
+  const lista=histFilt==='*'?EXEC:EXEC.filter(e=>e.local===histFilt);
+  if(!lista.length){div.innerHTML='<p style="font-family:var(--mono);font-size:12px;color:var(--muted)">Nenhum registro.</p>';return;}
+  div.innerHTML=[...lista].reverse().map(e=>`
+    <div class="exec-item">
+      <div class="exec-head">
+        <div><span class="lbadge l${e.local}" style="margin-bottom:5px;display:inline-flex">${LOCAIS[e.local].icon} ${LOCAIS[e.local].label}</span>
+          <div style="font-size:13px;font-weight:600">${e.itemNome}</div></div>
+        <div class="exec-val">${fmt(e.total)}</div>
+      </div>
+      <div class="exec-meta">${e.data?'📅 '+fmtData(e.data)+' · ':''}<b style="color:var(--text)">${e.qtd} un.</b> × ${fmt(e.valorUnit)}${e.ref?' · 📍 '+e.ref:''}</div>
+      ${e.obs?`<div style="font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:4px">💬 ${e.obs}</div>`:''}
+      ${e.foto?`<img class="exec-foto" src="${e.foto}">`:''}
+      <span class="del" onclick="delExec(${e.id})">✕ remover</span>
+    </div>`).join('');
+}
+function delExec(id){
+  if(!confirm('Remover?'))return;
+  EXEC=EXEC.filter(e=>e.id!==id);save();renderAll();onLocalChange();
+}
+function renderMedicao(){
+  document.getElementById('medLocais').innerHTML=['I','B','G'].map(k=>{
+    const loc=LOCAIS[k],total=EXEC.filter(e=>e.local===k).reduce((s,e)=>s+e.total,0);
+    const unids=EXEC.filter(e=>e.local===k).reduce((s,e)=>s+e.qtd,0);
+    const pct=loc.totalAnual>0?total/loc.totalAnual*100:0;
+    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:12px;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:2px;background:${loc.cor}"></div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">${loc.icon} ${loc.label.toUpperCase()}</div>
+      <div style="font-family:var(--mono);font-size:17px;font-weight:700;color:var(--text);margin-top:4px">${fmt(total)}</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted);margin-top:2px">${unids} unidades · ${pct.toFixed(2)}%</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--muted)">Previsto: ${fmt(loc.totalAnual)}</div>
+    </div>`;}).join('');
+  const mapa={};
+  EXEC.forEach(e=>{const k=e.itemId+'-'+e.local;if(!mapa[k])mapa[k]={itemId:e.itemId,nome:e.itemNome,local:e.local,valorUnit:e.valorUnit,qtd:0,total:0};mapa[k].qtd+=e.qtd;mapa[k].total+=e.total;});
+  const rows=Object.values(mapa).sort((a,b)=>a.itemId-b.itemId||a.local.localeCompare(b.local));
+  const totalGeral=rows.reduce((s,r)=>s+r.total,0);
+  document.getElementById('medTbody').innerHTML=rows.length?rows.map(r=>`
+    <tr><td style="font-family:var(--mono);font-size:11px;color:var(--muted)">${String(r.itemId).padStart(2,'0')}</td>
+      <td style="font-size:12px">${r.nome}</td>
+      <td class="vr" style="font-family:var(--mono)">${r.qtd}</td>
+      <td><span class="lbadge l${r.local}">${LOCAIS[r.local].icon} ${LOCAIS[r.local].label}</span></td>
+      <td class="vr" style="font-family:var(--mono);color:var(--muted)">${fmt(r.valorUnit)}</td>
+      <td class="vc">${fmt(r.total)}</td></tr>`).join('')
+    :'<tr><td colspan="6" style="font-family:var(--mono);font-size:12px;color:var(--muted);padding:14px">Nenhum registro.</td></tr>';
+  const pct=totalGeral/VALOR_TOTAL_ATA*100;
+  document.getElementById('medTotal').textContent=fmt(totalGeral);
+  document.getElementById('medPct').textContent=pct.toLocaleString('pt-BR',{minimumFractionDigits:4})+'%';
+  document.getElementById('pbGlobal').style.width=Math.min(pct,100)+'%';
+  document.getElementById('pbLabel').textContent=pct.toFixed(4)+'%';
+}
+function updateKPIs(){
+  const total=EXEC.reduce((s,e)=>s+e.total,0),pct=total/VALOR_TOTAL_ATA*100;
+  const unids=EXEC.reduce((s,e)=>s+e.qtd,0);
+  document.getElementById('kpiTotal').textContent=fmt(total);
+  document.getElementById('kpiPct').textContent=pct.toLocaleString('pt-BR',{minimumFractionDigits:4})+'% do contrato';
+  document.getElementById('kpiSaldo').textContent=fmt(VALOR_TOTAL_ATA-total);
+  document.getElementById('kpiRegs').textContent=unids;
+}
+function gerarPDF(){
+  if(!EXEC.length){alert('Nenhuma execução.');return;}
+  const{jsPDF}=window.jspdf;
+  const doc=new jsPDF({orientation:'portrait',unit:'mm',format:'a4'});
+  const W=210,M=15;let y=20;
+
+  const hdr=(pg)=>{
+    doc.setFillColor(8,12,20);doc.rect(0,0,W,13,'F');
+    doc.setFontSize(7);doc.setTextColor(0,212,255);
+    doc.text('ATA 001/2023 · DESENVOLVE-SE · VIDEOMONITORAMENTO',M,8);
+    doc.text('RELATÓRIO DE MEDIÇÃO — '+new Date().toLocaleDateString('pt-BR'),W-M,8,{align:'right'});
+  };
+
+  const checkY=(needed)=>{
+    if(y+needed>278){doc.addPage();hdr();y=22;}
+  };
+
+  hdr();
+
+  // ── CAPA / RESUMO ──
+  doc.setFontSize(14);doc.setTextColor(220,230,245);
+  doc.text('Relatório de Medição — Comprovação de Execução',M,y);y+=8;
+  doc.setFontSize(8);doc.setTextColor(100,120,150);
+  doc.text('Emitido em: '+new Date().toLocaleString('pt-BR')+'   ·   Total de registros: '+EXEC.length,M,y);y+=4;
+  doc.text('Contrato: ATA de Registro de Preços Nº 001/2023 · Desenvolve-SE',M,y);y+=10;
+
+  // ── SEÇÃO 1: CONSOLIDADO FINANCEIRO ──
+  doc.setFillColor(17,28,46);doc.rect(M,y,W-2*M,7,'F');
+  doc.setFontSize(9);doc.setTextColor(0,212,255);
+  doc.text('1. CONSOLIDADO FINANCEIRO POR LOCAL',M+2,y+5);y+=10;
+
+  ['I','B','G'].forEach(k=>{
+    const loc=LOCAIS[k],rows=EXEC.filter(e=>e.local===k);
+    if(!rows.length)return;
+    checkY(14);
+    doc.setFontSize(9);doc.setTextColor(0,212,255);
+    doc.text(loc.label.toUpperCase(),M,y);y+=2;
+    doc.setDrawColor(30,48,77);doc.line(M,y,W-M,y);y+=5;
+    doc.setFontSize(7.5);doc.setTextColor(90,110,140);
+    doc.text('ITEM',M,y);
+    doc.text('QTD',M+90,y,{align:'right'});
+    doc.text('VL. UNIT.',M+122,y,{align:'right'});
+    doc.text('TOTAL',W-M,y,{align:'right'});
+    y+=4;
+    const mapa={};
+    rows.forEach(e=>{
+      if(!mapa[e.itemId])mapa[e.itemId]={nome:e.itemNome,qtd:0,valorUnit:e.valorUnit,total:0};
+      mapa[e.itemId].qtd+=e.qtd;mapa[e.itemId].total+=e.total;
+    });
+    let sub=0;
+    Object.values(mapa).forEach((r,idx)=>{
+      sub+=r.total;
+      checkY(7);
+      if(idx%2===0){doc.setFillColor(13,20,32);doc.rect(M,y-3.5,W-2*M,6,'F');}
+      doc.setFontSize(7.5);doc.setTextColor(220,230,245);
+      doc.text(r.nome.substring(0,48),M,y);
+      doc.text(String(r.qtd),M+90,y,{align:'right'});
+      doc.text(fmtPDF(r.valorUnit),M+122,y,{align:'right'});
+      doc.setTextColor(0,255,157);
+      doc.text(fmtPDF(r.total),W-M,y,{align:'right'});
+      doc.setTextColor(220,230,245);y+=6;
+    });
+    doc.setFontSize(8);doc.setTextColor(0,255,157);
+    doc.text('Subtotal '+loc.label+': '+fmtPDF(sub),W-M,y,{align:'right'});y+=9;
+  });
+
+  checkY(14);
+  doc.setDrawColor(0,212,255);doc.line(M,y,W-M,y);y+=6;
+  const total=EXEC.reduce((s,e)=>s+e.total,0);
+  const pct=total/VALOR_TOTAL_ATA*100;
+  doc.setFontSize(11);doc.setTextColor(0,255,157);
+  doc.text('TOTAL MEDIÇÃO ACUMULADA: '+fmtPDF(total),M,y);y+=6;
+  doc.setFontSize(9);doc.setTextColor(255,184,0);
+  doc.text('Percentual do Contrato: '+pct.toLocaleString('pt-BR',{minimumFractionDigits:4})+'%',M,y);y+=14;
+
+  // ── SEÇÃO 2: REGISTROS COM FOTO ──
+  checkY(12);
+  doc.setFillColor(17,28,46);doc.rect(M,y,W-2*M,7,'F');
+  doc.setFontSize(9);doc.setTextColor(0,212,255);
+  doc.text('2. REGISTROS DE EXECUÇÃO COM COMPROVAÇÃO FOTOGRÁFICA',M+2,y+5);y+=12;
+
+  let regNum=0;
+  [...EXEC].forEach(e=>{
+    regNum++;
+    const temFoto=!!e.foto;
+    const alturaBloco=temFoto?78:34;
+    checkY(alturaBloco);
+
+    // cabeçalho do registro
+    doc.setFillColor(13,20,32);doc.rect(M,y-4,W-2*M,8,'F');
+    doc.setFontSize(8);doc.setTextColor(0,212,255);
+    doc.text('Reg. '+String(regNum).padStart(3,'0')+' — '+LOCAIS[e.local].label.toUpperCase(),M+2,y);
+    doc.setTextColor(0,255,157);
+    doc.text(fmtPDF(e.total),W-M,y,{align:'right'});
+    y+=6;
+
+    // dados do registro
+    doc.setFontSize(7.5);doc.setTextColor(220,230,245);
+    doc.text('Item: '+e.itemNome,M,y);y+=5;
+
+    doc.setTextColor(150,170,200);
+    const meta=[
+      'Data: '+(e.data?fmtData(e.data):'—'),
+      'Qtd: '+e.qtd+' un.',
+      'Vl. Unit.: '+fmtPDF(e.valorUnit),
+    ].join('   ·   ');
+    doc.text(meta,M,y);y+=5;
+
+    if(e.ref){
+      doc.setTextColor(130,150,180);
+      doc.text('Ref.: '+e.ref.substring(0,80),M,y);y+=5;
+    }
+    if(e.obs){
+      doc.setTextColor(130,150,180);
+      doc.text('Obs.: '+e.obs.substring(0,80),M,y);y+=5;
+    }
+
+    // foto
+    if(temFoto){
+      try{
+        checkY(62);
+        // moldura da foto
+        doc.setDrawColor(30,48,77);
+        doc.setFillColor(8,12,20);
+        doc.rect(M,y,W-2*M,58,`FD`);
+        // insere imagem centralizada dentro da moldura
+        const imgW=W-2*M-4;
+        const imgH=54;
+        doc.addImage(e.foto,'JPEG',M+2,y+2,imgW,imgH,'','FAST');
+        y+=60;
+      }catch(err){
+        doc.setFontSize(7);doc.setTextColor(255,71,87);
+        doc.text('[Erro ao carregar foto]',M,y);y+=6;
+      }
+    } else {
+      doc.setFontSize(7);doc.setTextColor(96,112,144);
+      doc.text('[Sem foto anexada]',M,y);y+=6;
+    }
+
+    // separador
+    doc.setDrawColor(20,36,60);doc.line(M,y+2,W-M,y+2);y+=7;
+  });
+
+  doc.save('relatorio_execucao_ata001_'+new Date().toISOString().slice(0,10)+'.pdf');
+}
+function renderAll(){renderSaldos();renderLocCards();renderExec();renderMedicao();updateKPIs();}
+function save(){localStorage.setItem('fisc_v5',JSON.stringify(EXEC));}
+function fmt(v){return v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'})}
+function fmtPDF(v){return 'R$ '+v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}
+function fmtData(d){const[y,m,dd]=d.split('-');return`${dd}/${m}/${y}`}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg||'✓ Registrado';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3000)}
+</script>
+</body>
+</html>
